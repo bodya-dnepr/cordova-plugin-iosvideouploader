@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="cordova-plugin-iosvideouploader"
+        version="0.0.1">
+
+        <name>iOSVideoUploader</name>
+        <description>Upload Video files Using UIImagePicker</description>
+
+        <author>Eugene/Bogdan</author>
+
+        <engines>
+            <engine name="cordova" version=">=3.0.0" />
+        </engines>
+        <dependency id="cordova-plugin-add-swift-support" version="1.6.1"/>
+        <js-module name="iOSVideoUploader" src="www/iOSVideoUploader.js">
+            <clobbers target="window.plugins.iOSVideoUploader" />
+        </js-module>
+
+        <platform name="ios">
+
+            <config-file parent="/*" target="config.xml">
+                <feature name="iOSVideoUploader">
+                    <param name="ios-package" value="iOSVideoUploader" />
+                </feature>
+            </config-file>
+
+            <source-file src="src/ios/iOSVideoUploader.swift" />
+
+        </platform>
+</plugin>

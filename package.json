@@ -1,0 +1,33 @@
+{
+  "name": "cordova-plugin-iosvideouploader",
+  "version": "0.0.9",
+  "description": "Cordova/Phonegap plugin to select video files from PhotoLibrary and upload them",
+  "cordova": {
+    "id": "cordova-plugin-iosvideouploader",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/an-rahulpandey/ios-audio-picker.git"
+  },
+  "keywords": [
+    "ios video picker",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "video picker"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "Eugene/Bogdan",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/an-rahulpandey/ios-audio-picker/issues"
+  },
+  "homepage": "https://github.com/an-rahulpandey/ios-video-uploader"
+}
