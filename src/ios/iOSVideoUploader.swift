@@ -1,9 +1,13 @@
 @objc(iOSVideoUploader) class iOSVideoUploader : CDVPlugin, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
   var callbackID: String = ""
+  var apiUrl: String = ""
+  var token: String = ""
 
   func getVideo(_ command: CDVInvokedUrlCommand) {
     callbackID = command.callbackId;
+    apiUrl = command.arguments[0] as! String;
+    token = command.arguments[1] as! String;
 
     let imagePickerController = UIImagePickerController()
     imagePickerController.sourceType = .photoLibrary
@@ -15,14 +19,14 @@
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
     let path = info[UIImagePickerControllerMediaURL] as! NSURL
 
-    upload(url: "https://api.s.gymcloud.com/videos", accessToken: "aa06633a6abe875d84f0cf65692405f1579b3d55272755af0456bc45c74ece14", filePath: path.relativePath!, picker: picker, callbackID: callbackID)
+    upload(url: apiUrl, accessToken: token, filePath: path, picker: picker, callbackID: callbackID)
 
     picker.dismiss(animated: true, completion: { _ in })
   }
 
-  func upload(url: String, accessToken: String, filePath: String, picker: UIImagePickerController, callbackID: String) {
+  func upload(url: String, accessToken: String, filePath: NSURL, picker: UIImagePickerController, callbackID: String) {
     let callback = callbackID
-    let request = createRequest(urlNamespace: url, filePath: filePath, name: "name", accessToken: accessToken)
+    let request = createRequest(urlNamespace: url, filePath: filePath.relativePath!, name: filePath.lastPathComponent!, accessToken: accessToken)
 
     let task = URLSession.shared.dataTask(with: request) { data, response, error in
       guard let data = data, error == nil else {                                                 // check for fundamental networking error
